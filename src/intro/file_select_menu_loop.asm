@@ -186,7 +186,7 @@ FILE_MENU_LOOP: ;$C1F805
 	STA $04
 	LDY $04
 	LDX #.LOWORD(GAME_STATE) + game_state::pet_name
-	LDA #$0006
+	LDA #.SIZEOF(game_state::pet_name)
 	JSR NAME_A_CHARACTER
 	CMP #$0000
 	BEQ @UNKNOWN25
@@ -218,7 +218,7 @@ FILE_MENU_LOOP: ;$C1F805
 	STA $04
 	LDY $04
 	LDX #.LOWORD(GAME_STATE) + game_state::favourite_food
-	LDA #$0006
+	LDA #.SIZEOF(game_state::favourite_food)
 	JSR NAME_A_CHARACTER
 	CMP #$0000
 	BEQ @UNKNOWN27
@@ -250,7 +250,7 @@ FILE_MENU_LOOP: ;$C1F805
 	STA $04
 	LDY $04
 	LDX #.LOWORD(GAME_STATE) + game_state::favourite_thing + 4 ; part after 'PSI ' prefix
-	LDA #$0006
+	LDA #.SIZEOF(game_state::favourite_thing)
 	JSR NAME_A_CHARACTER
 	CMP #$0000
 	BEQ @UNKNOWN29
@@ -625,7 +625,7 @@ FILE_MENU_LOOP: ;$C1F805
 	LDX #$0001
 	LDA #EVENT_FLAG::FLG_SYS_MONSTER_OFF
 	JSL SET_EVENT_FLAG
-	LDA #$0000
+	LDA #$0001
 	STA SHOW_NPC_FLAG
 @UNKNOWN59:
 	JSR UNKNOWN_C1008E
