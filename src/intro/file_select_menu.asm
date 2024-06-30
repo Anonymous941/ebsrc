@@ -11,7 +11,7 @@ FILE_SELECT_MENU: ;$C1ED5B
 @UNKNOWN0:
 	TYA
 	JSL LOAD_GAME_SLOT
-	LDA GAME_STATE + game_state::favourite_thing + 1
+	LDA GAME_STATE + game_state::favorite_thing + 1
 	AND #$00FF
 	BEQ @UNKNOWN5
 	SEP #PROC_FLAGS::ACCUM8
@@ -106,7 +106,7 @@ FILE_SELECT_MENU: ;$C1ED5B
 @UNKNOWN9:
 	TYA
 	JSL LOAD_GAME_SLOT
-	LDA GAME_STATE + game_state::favourite_thing + 1
+	LDA GAME_STATE + game_state::favorite_thing + 1
 	AND #$00FF
 	BEQL @UNKNOWN13
 	PROMOTENEARPTR UNKNOWN_7E9C9F, $06

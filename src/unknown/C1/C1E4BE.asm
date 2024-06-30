@@ -17,14 +17,20 @@ UNKNOWN_C1E4BE: ;$C1E4BE
 	ADC #.LOWORD(WINDOW_STATS_TABLE)
 	TAY
 	STY $12
-	LDA #$0004
-	CLC
-	SBC $16
-	BRANCHLTEQS @UNKNOWN2
-	LDX #$0005
+    LDA #$0004
+    CLC
+    SBC $16
+    BRANCHLTEQS @NONCHAR_DONT_CARE
+	LDX #.SIZEOF(char_struct::name)
 	BRA @UNKNOWN3
-@UNKNOWN2:
-	LDX #$0006
+@NONCHAR_DONT_CARE:
+	LDX #.SIZEOF(game_state::pet_name)
+	; because there aren't seperate routines, the don't care pet name's length is copied throughout other text lengths
+	; this means that if pet_name's length is 6 and there is a don't care name for favorite_food that is 7 characters long, it won't load the 7th character
+	; this is impossible to fix without causing the routine to become larger, and running out of space
+	.IF .SIZEOF(game_state::pet_name) <> .SIZEOF(game_state::favorite_food) || .SIZEOF(game_state::pet_name) <> .SIZEOF(game_state::favorite_thing) - 6
+		.WARNING "pet name, favorite food and favorite thing lengths must be the same, or Don't care will be messed up"
+	.ENDIF
 @UNKNOWN3:
 	STX $10
 	LDA $10
@@ -61,10 +67,10 @@ UNKNOWN_C1E4BE: ;$C1E4BE
 @UNKNOWN7:
 	LDA $12
 	STA $04
-	OPTIMIZED_MULT $04, 6
+	OPTIMIZED_MULT $04, DONTCARE_NAME_LENGTH
 	STA $02
 	LDA $16
-	OPTIMIZED_MULT $04, 42
+	OPTIMIZED_MULT $04, DONTCARE_NAME_LENGTH * DONTCARE_LIST_LENGTH
 	CLC
 	ADC $02
 	LDX $0E

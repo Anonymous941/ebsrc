@@ -5,11 +5,7 @@
 .ENDSTRUCT
 
 .STRUCT char_struct
-.IF .DEFINED(JPN)
-	name .byte 4 ;0
-.ELSE
-	name .byte 5 ;0
-.ENDIF
+	name .byte CHAR_NAME_SIZE ;0
 	level .byte ;5
 	exp .dword ;6
 	max_hp .word ;10
@@ -68,15 +64,15 @@
 
 .STRUCT game_state
 	mother2_playername .byte 12 ;0
-	earthbound_playername .byte 24 ;12
-	pet_name .byte 6 ;36
-	favourite_food .byte 6 ;42
+	earthbound_playername .byte 30 ;12
+	pet_name .byte PET_NAME_SIZE ;36
+	favorite_food .byte FAVORITE_FOOD_SIZE ;42
 .IF .DEFINED(JPN)
-	favourite_thing .byte 9 ;48
+	favorite_thing .byte FAVORITE_THING_SIZE + 3 ;48
 .ELSEIF .DEFINED(PROTOTYPE19950327)
-	favourite_thing .byte 11 ;48
+	favorite_thing .byte FAVORITE_THING_SIZE + 5 ;48
 .ELSE
-	favourite_thing .byte 12 ;48
+	favorite_thing .byte FAVORITE_THING_SIZE + 6 ;48
 .ENDIF
 	money_carried .dword ;60
 	bank_balance .dword ;64

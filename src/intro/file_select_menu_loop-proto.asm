@@ -217,7 +217,7 @@ FILE_MENU_LOOP: ;$C1F805
 	LDA $22
 	STA $04
 	LDY $04
-	LDX #.LOWORD(GAME_STATE) + game_state::favourite_food
+	LDX #.LOWORD(GAME_STATE) + game_state::favorite_food
 	LDA #$0006
 	JSR NAME_A_CHARACTER
 	CMP #$0000
@@ -249,7 +249,7 @@ FILE_MENU_LOOP: ;$C1F805
 	LDA $22
 	STA $04
 	LDY $04
-	LDX #.LOWORD(GAME_STATE) + game_state::favourite_thing + 4 ; part after 'PSI ' prefix
+	LDX #.LOWORD(GAME_STATE) + game_state::favorite_thing + 4 ; part after 'PSI ' prefix
 	LDA #$0006
 	JSR NAME_A_CHARACTER
 	CMP #$0000
@@ -308,7 +308,7 @@ FILE_MENU_LOOP: ;$C1F805
 	LOADPTR FILE_SELECT_TEXT_FAVORITE_FOOD, $0E
 	LDA #$000E
 	JSR PRINT_STRING
-	PROMOTENEARPTR GAME_STATE + game_state::favourite_food, $06
+	PROMOTENEARPTR GAME_STATE + game_state::favorite_food, $06
 	REP #PROC_FLAGS::ACCUM8
 	MOVE_INT $06, $0E
 	JSL STRLEN
@@ -353,7 +353,7 @@ FILE_MENU_LOOP: ;$C1F805
 	SBC $04
 	LDX $1A
 	JSL UNKNOWN_C438A5
-	PROMOTENEARPTR GAME_STATE + game_state::favourite_food, $06
+	PROMOTENEARPTR GAME_STATE + game_state::favorite_food, $06
 	REP #PROC_FLAGS::ACCUM8
 	MOVE_INT $06, $0E
 	JSL STRLEN
@@ -366,7 +366,7 @@ FILE_MENU_LOOP: ;$C1F805
 	LOADPTR FILE_SELECT_TEXT_COOLEST_THING, $0E
 	LDA #$000E
 	JSR PRINT_STRING
-	PROMOTENEARPTR GAME_STATE + game_state::favourite_thing + 4, $06 ; part after 'PSI ' prefix
+	PROMOTENEARPTR GAME_STATE + game_state::favorite_thing + 4, $06 ; part after 'PSI ' prefix
 	REP #PROC_FLAGS::ACCUM8
 	MOVE_INT $06, $0E
 	JSL STRLEN
@@ -409,7 +409,7 @@ FILE_MENU_LOOP: ;$C1F805
 	SBC $04
 	LDX $20
 	JSL UNKNOWN_C438A5
-	PROMOTENEARPTR GAME_STATE + game_state::favourite_thing + 4 , $06; part after 'PSI ' prefix
+	PROMOTENEARPTR GAME_STATE + game_state::favorite_thing + 4 , $06; part after 'PSI ' prefix
 	REP #PROC_FLAGS::ACCUM8
 	MOVE_INT $06, $0E
 	JSL STRLEN
@@ -570,13 +570,13 @@ FILE_MENU_LOOP: ;$C1F805
 	JSL UNKNOWN_C0B65F
 	SEP #PROC_FLAGS::ACCUM8
 	LDA #$0080 ;'P'
-	STA GAME_STATE+game_state::favourite_thing
+	STA GAME_STATE+game_state::favorite_thing
 	LDA #$0083 ;'S'
-	STA GAME_STATE+game_state::favourite_thing+1
+	STA GAME_STATE+game_state::favorite_thing+1
 	LDA #$0079 ;'I'
-	STA GAME_STATE+game_state::favourite_thing+2
+	STA GAME_STATE+game_state::favorite_thing+2
 	LDA #$0050 ;' '
-	STA GAME_STATE+game_state::favourite_thing+3
+	STA GAME_STATE+game_state::favorite_thing+3
 	LDA #$01
 	STA GAME_STATE + game_state::unknownC3
 	REP #PROC_FLAGS::ACCUM8

@@ -13,11 +13,11 @@ CC_1C_01_TABLE: ;$C4550F
 	.BYTE CC_1C_01_STRING_TYPE | .SIZEOF(game_state::pet_name)
 	.WORD .LOWORD(GAME_STATE) + game_state::pet_name
 
-	.BYTE CC_1C_01_STRING_TYPE | .SIZEOF(game_state::favourite_food)
-	.WORD .LOWORD(GAME_STATE) + game_state::favourite_food
+	.BYTE CC_1C_01_STRING_TYPE | .SIZEOF(game_state::favorite_food)
+	.WORD .LOWORD(GAME_STATE) + game_state::favorite_food
 
-	.BYTE CC_1C_01_STRING_TYPE | .SIZEOF(game_state::favourite_thing)
-	.WORD .LOWORD(GAME_STATE) + game_state::favourite_thing
+	.BYTE CC_1C_01_STRING_TYPE | .SIZEOF(game_state::favorite_thing)
+	.WORD .LOWORD(GAME_STATE) + game_state::favorite_thing
 
 	.BYTE CC_1C_01_INTEGER_TYPE | .SIZEOF(game_state::money_carried)
 	.WORD .LOWORD(GAME_STATE) + game_state::money_carried

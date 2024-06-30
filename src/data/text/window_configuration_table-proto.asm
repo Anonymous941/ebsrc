@@ -34,8 +34,8 @@ WINDOW_CONFIGURATION_TABLE: ;$C3E250
 	.WORD $0007, $000B, $0007, $0004 ; Jeff's Name
 	.WORD $0007, $000F, $0007, $0004 ; Poo's Name
 	.WORD $0014, $0003, $0008, $0004 ; King's Name
-	.WORD $000F, $0007, $000D, $0006 ; Favourite Food
-	.WORD $000F, $000D, $000D, $0006 ; Favourite Thing
+	.WORD $000F, $0007, $000D, $0006 ; Favorite Food
+	.WORD $000F, $000D, $000D, $0006 ; Favorite Thing
 	.WORD $0004, $0015, $0018, $0004 ; "Are you sure?"
 	.WORD $0012, $0006, $000D, $0008
 	.WORD $000C, $0001, $000C, $0004

@@ -196,7 +196,7 @@ FILE_MENU_LOOP: ;$C1F805
 	LDA #NAME_THEM_STRING_LENGTH
 	STA $12
 	LDY $02
-	LDX #.LOWORD(GAME_STATE) + game_state::favourite_food
+	LDX #.LOWORD(GAME_STATE) + game_state::favorite_food
 	LDA #$0006
 	JSR NAME_A_CHARACTER
 	CMP #$0000
@@ -226,7 +226,7 @@ FILE_MENU_LOOP: ;$C1F805
 	LDA #NAME_THEM_STRING_LENGTH
 	STA $12
 	LDY $02
-	LDX #.LOWORD(GAME_STATE) + game_state::favourite_thing + 2 ; part after 'PSI ' prefix
+	LDX #.LOWORD(GAME_STATE) + game_state::favorite_thing + 2 ; part after 'PSI ' prefix
 	LDA #$0006
 	JSR NAME_A_CHARACTER
 	CMP #$0000
@@ -287,7 +287,7 @@ FILE_MENU_LOOP: ;$C1F805
 	LDA #$89CC
 	STA $02
 	STA $22
-	LDY #.LOWORD(GAME_STATE) + game_state::favourite_food
+	LDY #.LOWORD(GAME_STATE) + game_state::favorite_food
 	STY $20
 	LDX #$0006
 	TYA
@@ -320,7 +320,7 @@ FILE_MENU_LOOP: ;$C1F805
 	LOADPTR FILE_SELECT_TEXT_COOLEST_THING, $0E
 	LDA #$000B
 	JSR PRINT_STRING
-	LDY #.LOWORD(GAME_STATE) + game_state::favourite_thing + 2 ; part after 'PSI ' prefix
+	LDY #.LOWORD(GAME_STATE) + game_state::favorite_thing + 2 ; part after 'PSI ' prefix
 	STY $1C
 	LDX #$0006
 	TYA
@@ -509,9 +509,9 @@ FILE_MENU_LOOP: ;$C1F805
 	JSL UNKNOWN_C0B65F
 	SEP #PROC_FLAGS::ACCUM8
 	LDA #$0050 ;'P'
-	STA GAME_STATE+game_state::favourite_thing
+	STA GAME_STATE+game_state::favorite_thing
 	LDA #$004B ;'K'
-	STA GAME_STATE+game_state::favourite_thing+1
+	STA GAME_STATE+game_state::favorite_thing+1
 	LDA #$0001
 	STA GAME_STATE + game_state::unknownC3
 	REP #PROC_FLAGS::ACCUM8

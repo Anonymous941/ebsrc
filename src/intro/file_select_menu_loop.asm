@@ -11,6 +11,9 @@ FILE_MENU_LOOP: ;$C1F805
 	LDA UNKNOWN_7EB49E,X
 	AND #$00FF
 	BEQL @EMPTY_FILE_SELECTED
+
+;;;
+	JMP @EMPTY_FILE_SELECTED
 @VALID_FILE_SELECTED:
 	JSR UNKNOWN_C1F07E
 	CMP #$0000
@@ -217,8 +220,8 @@ FILE_MENU_LOOP: ;$C1F805
 	LDA $24
 	STA $04
 	LDY $04
-	LDX #.LOWORD(GAME_STATE) + game_state::favourite_food
-	LDA #.SIZEOF(game_state::favourite_food)
+	LDX #.LOWORD(GAME_STATE) + game_state::favorite_food
+	LDA #.SIZEOF(game_state::favorite_food)
 	JSR NAME_A_CHARACTER
 	CMP #$0000
 	BEQ @UNKNOWN27
@@ -249,8 +252,8 @@ FILE_MENU_LOOP: ;$C1F805
 	LDA $24
 	STA $04
 	LDY $04
-	LDX #.LOWORD(GAME_STATE) + game_state::favourite_thing + 4 ; part after 'PSI ' prefix
-	LDA #.SIZEOF(game_state::favourite_thing)
+	LDX #.LOWORD(GAME_STATE) + game_state::favorite_thing + 4 ; part after 'PSI ' prefix
+	LDA #.SIZEOF(game_state::favorite_thing) - 4
 	JSR NAME_A_CHARACTER
 	CMP #$0000
 	BEQ @UNKNOWN29
@@ -308,7 +311,7 @@ FILE_MENU_LOOP: ;$C1F805
 	LOADPTR FILE_SELECT_TEXT_FAVORITE_FOOD, $0E
 	LDA #$000E
 	JSR PRINT_STRING
-	PROMOTENEARPTR GAME_STATE + game_state::favourite_food, $06
+	PROMOTENEARPTR GAME_STATE + game_state::favorite_food, $06
 	REP #PROC_FLAGS::ACCUM8
 	MOVE_INT $06, $0E
 	JSL STRLEN
@@ -353,7 +356,7 @@ FILE_MENU_LOOP: ;$C1F805
 	SBC $04
 	LDX $1C
 	JSL UNKNOWN_C438A5
-	PROMOTENEARPTR GAME_STATE + game_state::favourite_food, $06
+	PROMOTENEARPTR GAME_STATE + game_state::favorite_food, $06
 	REP #PROC_FLAGS::ACCUM8
 	MOVE_INT $06, $0E
 	JSL STRLEN
@@ -366,7 +369,7 @@ FILE_MENU_LOOP: ;$C1F805
 	LOADPTR FILE_SELECT_TEXT_COOLEST_THING, $0E
 	LDA #$000E
 	JSR PRINT_STRING
-	PROMOTENEARPTR GAME_STATE + game_state::favourite_thing + 4, $06 ; part after 'PSI ' prefix
+	PROMOTENEARPTR GAME_STATE + game_state::favorite_thing + 4, $06 ; part after 'PSI ' prefix
 	REP #PROC_FLAGS::ACCUM8
 	MOVE_INT $06, $0E
 	JSL STRLEN
@@ -411,7 +414,7 @@ FILE_MENU_LOOP: ;$C1F805
 	SBC $04
 	LDX $22
 	JSL UNKNOWN_C438A5
-	PROMOTENEARPTR GAME_STATE + game_state::favourite_thing + 4, $06 ; part after 'PSI ' prefix
+	PROMOTENEARPTR GAME_STATE + game_state::favorite_thing + 4, $06 ; part after 'PSI ' prefix
 	REP #PROC_FLAGS::ACCUM8
 	MOVE_INT $06, $0E
 	JSL STRLEN
@@ -441,7 +444,6 @@ FILE_MENU_LOOP: ;$C1F805
 	LDA #$00FF
 	STA UNKNOWN_7E5E6E
 	LDA #$0001
-	BRA @EVERYTHING_OKAY
 	JSR SELECTION_MENU
 	TAX
 	BNE @EVERYTHING_OKAY
@@ -573,13 +575,13 @@ FILE_MENU_LOOP: ;$C1F805
 	JSL UNKNOWN_C0B65F
 	SEP #PROC_FLAGS::ACCUM8
 	LDA #$0080 ;'P'
-	STA GAME_STATE+game_state::favourite_thing
+	STA GAME_STATE+game_state::favorite_thing
 	LDA #$0083 ;'S'
-	STA GAME_STATE+game_state::favourite_thing+1
+	STA GAME_STATE+game_state::favorite_thing+1
 	LDA #$0079 ;'I'
-	STA GAME_STATE+game_state::favourite_thing+2
+	STA GAME_STATE+game_state::favorite_thing+2
 	LDA #$0050 ;' '
-	STA GAME_STATE+game_state::favourite_thing+3
+	STA GAME_STATE+game_state::favorite_thing+3
 	REP #PROC_FLAGS::ACCUM8
 	LDA #$0004 ;Length of 'PSI ' string
 	STA $1E
@@ -587,7 +589,7 @@ FILE_MENU_LOOP: ;$C1F805
 @UNKNOWN54:
 	LDA $1E
 	CLC
-	ADC #.LOWORD(GAME_STATE) + game_state::favourite_thing
+	ADC #.LOWORD(GAME_STATE) + game_state::favorite_thing
 	TAX
 	LDA __BSS_START__,X
 	AND #$00FF
@@ -603,7 +605,7 @@ FILE_MENU_LOOP: ;$C1F805
 @UNKNOWN56:
 	.A16
 	STA $02
-	LDA #.SIZEOF(game_state::favourite_thing) - 1 ;Last byte should be \0
+	LDA #.SIZEOF(game_state::favorite_thing) - 1 ;Last byte should be \0
 	CLC
 	SBC $02
 	BRANCHGTS @UNKNOWN54
